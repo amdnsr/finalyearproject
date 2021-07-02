@@ -573,7 +573,7 @@ class DPAL():
         # self.plot_graphs(parameters=plot_parameters)
 
         # plotting number density vs shell number for every iteration
-        file_name = "number_density_vs_shell_number_iteration_{}".format(
+        file_name = "number_density_vs_radial_position_iteration_{}".format(
             self.number_of_iterations)
         # self.plot_number_density(file_name=file_name)
 
@@ -607,11 +607,11 @@ class DPAL():
                     self.max_number_of_iterations))
 
             # Final Number Density Plot
-            file_name = "Final Number Density vs shell number"
+            file_name = "Final_Number_Density_vs_Radial_Position"
             self.plot_number_density(file_name=file_name)
 
             # Final Temperature Plot
-            plot_parameters = {"file_name": "Final Temperature (K) vs Radial Position (mm)",
+            plot_parameters = {"file_name": "Final_Temperature_vs_Radial_Position",
                                "x": self.r_list[1:], "y": self.T_list[1:], "xlabel_value": "Radial Position (m)",
                                "ylabel_value": "Temperature (K)", "legend_value": None,
                                "save_folder": self.folder_name, "extension": ".jpg"}
@@ -634,7 +634,7 @@ class DPAL():
             data_file_location = self.folder_name + data_file_name
             df.to_csv(data_file_location, index=False)
 
-            self.Plot3D(data_file_location)
+            self.plot3D(data_file_location)
             return (self.T_list[:], self.Q_list[:])
 
     def steady_state_validation(self):
@@ -701,7 +701,7 @@ class DPAL():
         final_file_address = save_folder + file_name + image_extension
         plt.savefig(final_file_address)
 
-    def Plot3D(self, data_file):
+    def plot3D(self, data_file):
         df = pd.read_csv(data_file)
         r_list = df["Radial Position"]
         T_list = df["Temperature"]
@@ -735,7 +735,7 @@ class DPAL():
         ax.set_ylabel("Radial Position (mm)")
         ax.set_zlabel("Temperature (K)")
 
-        final_file_address = self.folder_name + "Final 3D Plot.jpg"
+        final_file_address = self.folder_name + "Final_3D_Plot.jpg"
         plt.savefig(final_file_address)
 
     def clearFolderContents(self, directory):
