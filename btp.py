@@ -730,10 +730,14 @@ class DPAL():
 
         cmap = plt.get_cmap(cmap_name)
         ax.plot_surface(X, Y, Z, cmap=cmap)
-
+        ax.title.set_text("3D Mesh plot of Temperature vs Radial Position")
         ax.set_xlabel("Radial Position (mm)")
         ax.set_ylabel("Radial Position (mm)")
         ax.set_zlabel("Temperature (K)")
+
+        ax.xaxis.pane.fill = False # Left pane
+        ax.yaxis.pane.fill = False # Right pane
+        ax.zaxis.pane.fill = False # Right pane
 
         final_file_address = self.folder_name + "Final_3D_Plot.jpg"
         plt.savefig(final_file_address)
